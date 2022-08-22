@@ -1,0 +1,30 @@
+mysql-ctl cli;
+
+show DATABASES;
+
+CREATE DATABASE hello_db;
+
+CREATE DATABASE helloWorld;
+
+DROP DATABASE helloWorld;
+
+USE hello_db; 
+
+SELECT DATABASE();
+
+
+CREATE DATABASE cat_app;
+
+USE cat_app;
+CREATE TABLE cats
+(
+    name varchar(100),
+    breed varchar(100),
+    age int
+);
+
+show tables;
+
+desc cats;
+
+drop table cats;
