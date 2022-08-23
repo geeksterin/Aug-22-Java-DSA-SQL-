@@ -1,0 +1,79 @@
+Drop table cats;
+
+show tables;
+
+CREATE TABLE cats 
+  ( 
+     cat_id INT NOT NULL AUTO_INCREMENT, 
+     name   VARCHAR(100), 
+     breed  VARCHAR(100), 
+     age    INT, 
+     PRIMARY KEY (cat_id) 
+  ); 
+  
+INSERT INTO cats(name, breed, age) 
+VALUES ('Ringo', 'Tabby', 4),
+       ('Cindy', 'Maine Coon', 10),
+       ('Dumbledore', 'Maine Coon', 11),
+       ('Egg', 'Persian', 4),
+       ('Misty', 'Tabby', 13),
+       ('George Michael', 'Ragdoll', 9),
+       ('Jackson', 'Sphynx', 7);
+  
+ SELECT * from cats;
+ SELECT name , breed from cats;
+ 
+ # where clause 
+ SELECT * from cats where age = 4;
+ SELECT name , age from cats where age = 4;
+ 
+SELECT name , age from cats where breed= 'Tabby';
+SELECT * from cats where breed= 'Tabby';
+
+# CHALLENGE SOLUTION 
+
+SELECT cat_id from cats;
+
+SELECT name , breed from cats;
+
+SELECT name , age from cats where breed = 'Tabby';
+
+SELECT cat_id, age from cats where cat_id = age;
+
+
+
+# INSERT into cats(cat_id , name , breed , age)
+# VALUES(5367 , 'Jetson' , 'Cub' , 21);
+
+# INSERT into cats( name , breed , age)
+# VALUES('Jetsoddn' , 'Cubdd' , 21);
+ 
+ 
+ # ALIAS 'as '
+ 
+ SELECT cat_id as id , name as 'Kitty name' , breed as 'kitty breed' from cats;
+ 
+ # UPDATE COMMAND 
+ UPDATE cats set breed = 'Short hair' where breed = 'Tabby';
+ 
+ UPDATE cats set age = 14 where name = 'Misty';
+  
+ # UPDATE CHALLENGE SOLUTION 
+ UPDATE cats set name = 'Jack' where name = 'Jackson';
+ 
+ UPDATE cats set breed = 'British Short hair' where name ='Ringo';
+ 
+ UPDATE cats set age = 12 where breed = 'Maine Coon';
+ 
+ # DELETE COMMAND 
+ DELETE from cats where name = 'Egg';
+ 
+ # DELETE CHALLENGE SOLUTION 
+ DELETE from cats where age =4;
+ DELETE from cats where cat_id = age;
+ DELETE from cats;
+ 
+ 
+
+ 
+ 
