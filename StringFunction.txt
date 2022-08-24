@@ -1,0 +1,144 @@
+DROP DATABASE IF EXISTS book_shop;
+CREATE DATABASE book_shop;
+USE book_shop; 
+
+CREATE TABLE books 
+	(
+		book_id INT NOT NULL AUTO_INCREMENT,
+		title VARCHAR(100),
+		author_fname VARCHAR(100),
+		author_lname VARCHAR(100),
+		released_year INT,
+		stock_quantity INT,
+		pages INT,
+		PRIMARY KEY(book_id)
+	);
+
+INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)
+VALUES
+('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),
+('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),
+('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),
+('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),
+('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),
+('The Circle', 'Dave', 'Eggers', 2013, 26, 504),
+('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),
+('Just Kids', 'Patti', 'Smith', 2010, 55, 304),
+('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),
+('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),
+('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),
+("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),
+('White Noise', 'Don', 'DeLillo', 1985, 49, 320),
+('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),
+('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
+('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
+
+
+Select * from books;
+Select * from books where released_year = 2000;
+
+# CONCAT 
+Select Concat(author_fname , ' ' , author_lname , '!') as 'full name' from books;
+
+Select Concat(author_lname , ' ' , author_fname) as 'author_fullname' from books;
+
+Select Concat(author_lname , ' had published a book in   ' ,  released_year) as 'full name' from books;
+
+#CONCAT_WS
+Select Concat_ws(' -> ' , author_lname , author_fname , released_year , stock_quantity , pages) as 'details of a book' from books;
+
+
+# SubString 
+Select Substring('Hello World' , 1 , 4) as name;
+
+Select Substring('Hello World' , 7) as name;
+
+Select Substring('Hello World' , 3 , 8) as name;
+
+Select Substring('Hello World' , -3) as name;
+
+Select Substring('Hello World' , -3 , 99999) as name;
+
+Select Substring('Hello World' , 1 , 9967699) as name;
+
+Select Substr('Hello World' , -7) as name;
+
+#Select SUBSTR('HELLO WORLD' , index position to start with , length (it can never be -ve));
+Select SUBSTR(title , 1 , 10 ) from books;
+              
+Select CONCAT(SUBSTR(title , 1 , 10) , '...' ) as 'detail' from books;
+
+Select CONCAT(SUBSTR(title , 1 , 10) , '...' , released_year) as 'detail' from books;
+
+Select Substring('Hello World' , -5 , 1) as name;
+
+# REPLACE 
+SELECT REPLACE('Hello World' , 'Hell' , '!@#$') as 'word';
+
+SELECT REPLACE('Hello Worlf' , 'l' , '7') as 'word';
+
+SELECT REPLACE(title , 'e' , '3') as 'word' from books;
+
+Select REPLACE('cheese bread coffee milk' , ' ' , ' and ');
+
+SELECT Substr(REPLACE(title , 'e' , '3') , 1 , 10) as 'word' from books; 
+
+SELECT REPLACE('Hello Worlf' , 'l' , '77') as 'word';
+
+# REVERSE
+SELECT REVERSE('Hello World');
+
+Select REVERSE(title) as 'title' from books;
+
+# Palindrome 
+
+SELECT CONCAT('woof' , REVERSE('woof'));
+
+# CHAR Length 
+
+Select char_length('Hello World');
+
+Select  title , char_length(title) from books;
+
+Select Concat(title , ' -> ' ,  char_length(title) ) as title from books;
+
+# UPPER AND LOWER 
+
+Select UPPER('Hello World');
+
+Select Lower('Hello World');
+
+Select Concat('MY FAVORITE BOOK IS ' , UPPER(title)) from books;
+
+Select Concat('MY FAVORITE BOOK IS ' , UPPER(title)) as 'favorite book' from books;
+
+# STRING FUNCTION CHALLENGE 
+
+Select REPLACE(title , ' ' , '->') as title from books;
+
+Select author_lname as forwards , REVERSE(author_lname) as backwards from books;
+
+SELECT UPPER(CONCAT(author_fname , ' ' , author_lname)) as 'full name in caps' from books;
+
+Select Concat(title , ' was released in ',  released_year) as blurb from books;
+
+Select title , char_length(title) as character_count from books;
+
+Select concat(Substr(title , 1 , 10) , '...') as 'short title' ,
+Concat(author_lname , ',' , author_fname) as author , 
+Concat(stock_quantity , ' in stock') as quantity 
+from books;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
