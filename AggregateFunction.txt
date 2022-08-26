@@ -1,0 +1,101 @@
+# Count 
+
+Select Count(*) from books;
+
+Select count(author_fname) from books;
+
+Select count(DISTINCT author_fname) from books;
+
+Select count(DISTINCT author_lname) from books;
+
+Select count(DISTINCT author_fname, author_lname) from books;
+
+Select count(author_fname), count(title) from books;
+
+Select title from books where title like '%the%';
+
+Select count(*) from books where title like '%the%';
+Select count(title) from books where title like '%the%';
+
+# MIN / MAX 
+Select min(released_year) from books;
+Select max(released_year) from books;
+Select max(pages) from books;
+Select max(stock_quantity) from books;
+
+#MIN / MAX WITH SUBQUERY 
+SELECT * from books where pages = (Select min(pages) from books);
+SELECT * from books where pages >=(Select min(pages) from books);
+
+
+
+SELECT * from books where pages = 176;
+
+SELECT * from books where pages >= 400;
+
+
+
+SELECT title , pages  from books where pages = (Select max(pages) from books);
+
+SELECT title , pages , stock_quantity  from books where stock_quantity = (Select max(stock_quantity) from books);
+
+SELECT title , pages , stock_quantity  from books where stock_quantity = (100);
+
+# MIN / MAX WITH GROUP BY;
+#Q1 find the  year each author published their first book
+SELECT author_fname , author_lname , min(released_year) from books 
+GROUP BY author_lname , author_fname;
+
+#Q2 find the  year each author published their last book
+SELECT author_fname , author_lname , max(released_year) from books 
+GROUP BY author_lname , author_fname;
+
+#Q3 Find the longest page count for each author 
+Select author_fname , max(pages) from books
+GROUP by author_fname;
+
+#========================================================================================================================================================
+
+# SUM with group by 
+SELECT sum(pages) from books;
+
+#Q1 Sum of all the pages each author has written 
+Select author_fname , author_lname , sum(pages) from books group by author_fname , author_lname;
+
+# AVG  with group by 
+SELECT avg(pages) from books;
+
+#Q1- Calculate the avg stock_quantity for books released in the same year  
+Select  released_year , avg(stock_quantity) from books group by released_year;
+
+Select  author_fname , avg(pages) from books group by author_fname;
+
+
+# Aggregate Function challenge Solution 
+
+Select count(*) from books;
+
+Select count(*) from books group by released_year;
+
+Select released_year, count(*) from books group by released_year;
+
+SELECT Sum(stock_quantity) from books;
+
+SELECT pages , concat(author_fname , ' ' , author_lname) from books order by pages desc limit 1;
+
+Select concat(author_fname , ' ' , author_lname) from books where pages = (Select max(pages) from books);
+
+Select author_fname , author_lname , avg(released_year) from books group by author_fname , author_lname;
+
+Select  concat(author_fname , ' ' , author_lname) as full_name , avg(released_year) from books group by full_name;
+
+Select released_year as year , 
+count(*) as '# books' ,
+avg(pages) as 'avg pages' 
+From books group by released_year;
+
+
+
+
+
+
