@@ -1,0 +1,149 @@
+# Not Equal 
+
+Select * from books where released_year = 2017;
+
+Select * from books where released_year != 2017;
+
+Select title , author_lname from books where author_lname = 'Harris';
+
+Select title , author_lname from books where author_lname != 'Harris';
+
+# not like 
+Select title from books where title like '%W%';
+
+Select title from books where title not like '%W%';
+
+# Greater than 
+Select title , released_year from books where released_year > 2000 order by released_year;
+
+Select title, stock_quantity from books where stock_quantity >=100;
+
+Select -10 > 20;
+
+Select 'a' > 'b';
+
+Select 'A' >= 'c';
+
+# Less than or less than equal to
+
+Select title , released_year from books where released_year < 2000 order by released_year;
+
+Select title, stock_quantity from books where stock_quantity <=100;
+
+Select -10 < 20;
+
+Select 'a' < 'b';
+
+Select 'A' <= 'a';
+
+# And Logic && 
+SELECT title , author_lname , released_year from books where author_lname = 'Eggers' and released_year > 2010;
+
+Select 1 < 5 && 7 =9;
+
+Select -10 >  -20 && 0<=0;
+
+SELECT -40 <= 0 And 10 > 40;
+
+Select 54<=54 and 'a' = 'A';
+
+SELECT * from books where author_lname = 'Eggers' and released_year	> 2000 && title like '%novel%';
+
+# OR Logic ||
+
+Select title, author_lname, released_year from books where author_lname ='Eggers' || released_year > 2010;
+
+SELECT 40 <=100 || -2 > 0;
+
+Select 10 > 5 ||  5 =5;
+
+Select 'a' = 5 || 3000 > 2000;
+
+Select 'a' = 5 || 3000 > 5000;
+
+Select 'a' = 'c' || 3000 > 2000;
+
+SELECT title, author_lname , released_year , stock_quantity 
+from books where author_lname = 'eggers' || released_year >2010 OR stock_quantity > 100;
+
+# BETWEEN 
+Select title,  released_year from books where released_year >=2004 && released_year <= 2015;
+
+Select title,  released_year from books where  released_year BETWEEN 2004 And 2015;
+
+Select title,  released_year from books where  released_year Not BETWEEN 2004 And 2015;
+
+# IN -> OR  / NOT IN -> AND 
+
+Select title , author_lname from books where author_lname = 'Carver'
+OR author_lname = 'Lahiri' OR author_lname = 'Smith';
+
+Select title , author_lname from books where author_lname IN ('Carver' , 'Lahiri' , 'Smith');
+
+#Q1 - Select all books not published in even years 
+
+Select title , released_year from books 
+where released_year !=2000 AND
+		released_year !=2002 AND
+        released_year !=2004 AND
+        released_year !=2006 AND
+        released_year !=2008 AND
+        released_year !=2010 AND
+        released_year !=2012 AND
+        released_year !=2014 AND
+        released_year !=2016 AND
+        released_year !=2018;
+
+
+
+Select title , released_year from books 
+where released_year not in (2000 ,2002, 2004, 2006, 2008 , 2010 , 2012 , 2014 , 2016, 2018);
+
+
+Select title , released_year from books 
+where released_year >= 2000 AND released_year %2 !=0;
+
+# CASE 
+Select title , released_year , 
+        CASE 
+        	WHEN released_year >= 2000 THEN 'Modern Lit'
+        	ELSE '20th Century Lit'
+        END as genre
+from books;
+
+Select title ,stock_quantity ,
+        CASE 
+        	WHEN stock_quantity BETWEEN 0 and 50 THEN '*'
+        	WHEN stock_quantity BETWEEN 51 and 100 THEN '**'
+            ELSE '***'
+        END as STOCK
+from books;
+
+# Logical Operator Challenge Solution 
+Select title , released_year from books where released_year < 1980;
+
+Select title , author_lname from books where author_lname = 'Eggers' or author_lname = 'chabon';
+
+Select title , author_lname from books where author_lname in ('Eggers' , 'Chabon');
+
+Select title, author_lname , released_year from books where  author_lname = 'Lahiri' And 
+released_year > 2000;
+
+Select title, pages from books where pages >= 100 and pages <=200;
+
+Select title, pages from books where pages BETWEEN 100 And 200;
+
+Select title ,author_lname from books where author_lname like 'C%' or author_lname like 'S%';
+
+Select title ,author_lname from books where Substr(author_lname , 1, 1) = 'C' or
+Substr(author_lname , 1, 1) = 'S';
+
+Select title ,author_lname from books where Substr(author_lname , 1, 1) in ('C' , 'S');
+
+SELECT title , author_lname , 
+        CASE 
+        	WHEN title like '%Stories%' THEN 'Short Stories'
+            WHEN title like 'Just Kids' OR title = 'A heartbreaking work of staggering 	genius' Then 'memoir'
+        	ELSE 'Novel'
+        END as TYPE
+from books;
